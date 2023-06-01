@@ -1,0 +1,139 @@
+.weather {
+    background-color: #007155;
+    height: 100vh;
+    width: 100vw;
+    padding-left: 18vw;
+    display: flex;
+    align-items: center;
+    gap: 20vw;
+}
+
+.weather__logo {
+    border-radius: 200px;
+    background-color: white;
+    height: 386px;
+    width: 386px;
+    background-image: url('../../assets/main.gif');
+    background-position: center center;
+    background-size: contain; 
+}
+
+.weather__container {
+    width: 306px;
+    display: grid;
+    gap: 6vh;
+}
+
+.weather__btn {
+    width: 100%;
+    padding: 5px 10px;
+    border-radius: 50px;
+}
+
+.weather__btn:hover {
+    background-color: #007155;
+    color: white;
+}
+
+.weather__geo {
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+    color: white;
+    margin-bottom: 12px;
+}
+
+.geo__pointer {
+    position: relative;
+    bottom: 7px;
+}
+
+.geo__info {
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.weather__date {
+    font-weight: 300;
+    font-size: 14px;
+    text-align: center;
+    color: white;
+}
+
+.weather__block {
+    background-color: white;
+    height: 161px;
+    width: 306px;
+    padding: 21px 36px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.weather__block_top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.weather__block_bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.weather__temp {
+    color: black;
+    font-weight: 500;
+    font-size: 64px;
+}
+
+.temp__symbol {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    position: absolute;
+}
+
+.weather__feeling {
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.weather__condition {
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.weather__info {
+    display: flex;
+    padding-left: 36px;
+    gap: 70px;
+}
+
+.info__list {
+    list-style-type: none;
+    text-align: left;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 2.5;
+}
+
+.weather__menu {
+    background-color: white;
+    border-radius: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 12px;
+}
+
+.menu__item {
+    fill: #414B5A;
+}
+
+.menu__item:hover {
+    fill: #8DBBFF;
+    transform: rotate(-15deg);
+}
+
