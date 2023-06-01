@@ -1,10 +1,7 @@
 * {
   box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
 }
-
-.font-roboto {
-	font-family: 'Roboto', sans-serif;
-  }
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -23,7 +20,7 @@ time, mark, audio, video {
 	padding: 0;
 	border: 0;
 	font-size: 100%;
-	font: inherit;
+	font-family: 'Roboto', sans-serif;
 	vertical-align: baseline;
 }
 

@@ -1,18 +1,28 @@
 import "./weather.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function Weather() {
-  const API_KEY = "edd2105acc391569bc7ab493a69244db";
 
+  const API_KEY = "edd2105acc391569bc7ab493a69244db";
   let date = new Date();
 
-  const [geoStatus, setGeoStatus] = useState(null);
+  // const [geoStatus, setGeoStatus] = useState(null);
   const [geoData, setGeoData] = useState(undefined);
   const [weatherData, setWeatherData] = useState({});
 
+  useEffect(() => {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          fetchGeo(position.coords.latitude, position.coords.longitude);
+          fetchWeather(position.coords.latitude, position.coords.longitude);
+        },
+      );
+  }, []);
+
+
   async function fetchWeather(lat, lon) {
     await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
+      `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
     )
       .then((res) => res.json())
       .then((data) => setWeatherData(data));
@@ -26,23 +36,23 @@ function Weather() {
       .then((data) => setGeoData(data[0]));
   }
 
-  const getLocation = () => {
-    if (!navigator.geolocation) {
-      setGeoStatus("Geolocation is not supported by your browser");
-    } else {
-      setGeoStatus("Locating...");
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setGeoStatus(null);
-          fetchGeo(position.coords.latitude, position.coords.longitude);
-          fetchWeather(position.coords.latitude, position.coords.longitude);
-        },
-        () => {
-          setGeoStatus("Unable to retrieve your location");
-        }
-      );
-    }
-  };
+  // const getLocation = () => {
+  //   if (!navigator.geolocation) {
+  //     setGeoStatus("Geolocation is not supported by your browser");
+  //   } else {
+  //     setGeoStatus("Locating...");
+  //     navigator.geolocation.getCurrentPosition(
+  //       (position) => {
+  //         setGeoStatus(null);
+  //         fetchGeo(position.coords.latitude, position.coords.longitude);
+  //         fetchWeather(position.coords.latitude, position.coords.longitude);
+  //       },
+  //       () => {
+  //         setGeoStatus("Unable to retrieve your location");
+  //       }
+  //     );
+  //   }
+  // };
 
   function getDayName() {
     let dayName;
@@ -127,9 +137,6 @@ function Weather() {
     <div className="weather">
       <div className="weather__container">
         <div>
-          <button className="geo__info weather__btn" onClick={getLocation}>
-            Get current weather
-          </button>
           <div className="weather__geo">
             <svg
               className="geo__pointer"
@@ -151,7 +158,6 @@ function Weather() {
             </h1>
           </div>
 
-          <h2 className="weather__date">{geoStatus}</h2>
           <h2 className="weather__date">
             {getDayName()} - {getMonthName()} - {date.getDate()}
           </h2>
@@ -160,8 +166,7 @@ function Weather() {
         <div className="weather__block">
           <div className="weather__block_top">
             <span className="weather__temp">
-              {Math.ceil(weatherData?.main?.temp)}
-              <span className="temp__symbol">o</span>
+              {Math.ceil(weatherData?.main?.temp) || '...'}&deg;
             </span>
 
             <svg width="68" height="58" viewBox="0 0 68 58">
@@ -196,10 +201,10 @@ function Weather() {
 
           <div className="weather__block_bottom">
             <span className="weather__feeling">
-              Real feel: {Math.ceil(weatherData?.main?.feels_like)}{" "}
+              Real feel: {Math.ceil(weatherData?.main?.feels_like) || '-'}
             </span>
 
-            {/* <span className="weather__condition">{weatherData?.weather[1]?.main}</span> */}
+            <span className="weather__condition">{weatherData.weather ? weatherData.weather[0].main : '...'}</span>
           </div>
         </div>
 
@@ -212,11 +217,11 @@ function Weather() {
             <li>Pressure</li>
           </ul>
           <ul className="info__list">
-            <li>{weatherData?.clouds?.all} %</li>
-            <li>{weatherData?.main?.humidity} %</li>
-            <li>{weatherData?.wind?.speed} m/s</li>
-            <li>{weatherData?.visibility} m</li>
-            <li>{weatherData?.main?.pressure} hPa</li>
+            <li>{`${weatherData?.clouds?.all} %`|| '-'}</li>
+            <li>{`${weatherData?.main?.humidity} %`|| '-'}</li>
+            <li>{`${weatherData?.wind?.speed} m/s`|| '-'}</li>
+            <li>{`${weatherData?.visibility} m`|| '-'}</li>
+            <li>{`${weatherData?.main?.pressure} hPa` || '-'}</li>
           </ul>
         </div>
 
@@ -272,3 +277,21 @@ export default Weather;
 //     .then((res) => res.json())
 //     .then((data) => setGEO(data));
 // }
+
+// useEffect(() => {
+//   if (!navigator.geolocation) {
+//     setGeoStatus("Geolocation is not supported by your browser");
+//   } else {
+//     setGeoStatus("Locating...");
+//     navigator.geolocation.getCurrentPosition(
+//       (position) => {
+//         setGeoStatus(null);
+//         fetchGeo(position.coords.latitude, position.coords.longitude);
+//         fetchWeather(position.coords.latitude, position.coords.longitude);
+//       },
+//       () => {
+//         setGeoStatus("Unable to retrieve your location");
+//       }
+//     );
+//   }
+// }, []);
