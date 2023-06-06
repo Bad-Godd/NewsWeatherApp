@@ -1,17 +1,113 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 const dateSlice = createSlice({
-    name: 'date',
-    initialState: {
-        list: {},
+  name: "date",
+  initialState: {
+    list: {},
+  },
+  reducers: {
+    addDate(state, action) {
+      state.list = action.payload;
+
+      state.date = state.list.getDate()
+
+      let day = state.list.getDay();
+      switch (day) {
+        case 0:
+          state.day = "Sun";
+          break;
+        case 1:
+          state.day = "Mon";
+          break;
+        case 2:
+          state.day = "Tue";
+          break;
+        case 3:
+          state.day = "Wed";
+          break;
+        case 4:
+          state.day = "Thur";
+          break;
+        case 5:
+          state.day = "Fri";
+          break;
+        case 6:
+          state.day = "Sat";
+          break;
+        default:
+          state.day = "Day";
+      }
+
+      switch (day) {
+        case 0:
+          state.fullday = "Sunday";
+          break;
+        case 1:
+            state.fullday = "Monday";
+          break;
+        case 2:
+            state.fullday = "Tuesday";
+          break;
+        case 3:
+            state.fullday = "Wednesday";
+          break;
+        case 4:
+            state.fullday = "Thursday";
+          break;
+        case 5:
+            state.fullday = "Friday";
+          break;
+        case 6:
+            state.fullday = "Saturday";
+          break;
+        default:
+            state.fullday = "Day";
+      }
+
+      let month = state.list.getMonth();
+      switch (month) {
+        case 0:
+          state.month = "Jan";
+          break;
+        case 1:
+          state.month = "Feb";
+          break;
+        case 2:
+          state.month = "Mar";
+          break;
+        case 3:
+          state.month = "Apr";
+          break;
+        case 4:
+          state.month = "May";
+          break;
+        case 5:
+          state.month = "Jun";
+          break;
+        case 6:
+          state.month = "Jul";
+          break;
+        case 7:
+          state.month = "Aug";
+          break;
+        case 8:
+          state.month = "Sep";
+          break;
+        case 9:
+          state.month = "Oct";
+          break;
+        case 10:
+          state.month = "Nov";
+          break;
+        case 11:
+          state.month = "Dec";
+          break;
+        default:
+          state.month = "Month";
+      }
     },
-    reducers: {
-        addDate(state, action) {
-            state.list = action.payload;
-            state.count = state.list.length;
-        }
-    }
-})
+  },
+});
 
 export const { addDate } = dateSlice.actions;
 

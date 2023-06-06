@@ -47,4 +47,22 @@ table {
 	border-spacing: 0;
 }
 
+.page {
+	display: flex;
+}
+
+.page__main {
+	width: 85vw;
+	padding-left: 30px;
+    padding-top: 33px;
+    padding-right: 30px;
+}
+
+.page__title {
+	font-weight: 500;
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: 0.7em;
+}
+
 

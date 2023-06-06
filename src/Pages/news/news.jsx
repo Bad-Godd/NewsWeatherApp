@@ -10,15 +10,15 @@ function News(location) {
 
 
     return (
-        <div className='news'>
+        <div className='page'>
 
             <header>
                 <Sidebar location={location}/>
             </header>
 
-            <main className='news__main'>
+            <main className='page__main'>
 
-                <h1 className='news__title'>AgriNews Daily</h1>
+                <h1 className='page__title'>AgriNews Daily</h1>
 
                 <h2 className='news__subtitle'>Trending....</h2>
 

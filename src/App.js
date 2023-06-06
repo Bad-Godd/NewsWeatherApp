@@ -1,7 +1,11 @@
 
 import './App.css';
 
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Routes, Route, useLocation } from "react-router-dom";
+
+import { addDate } from './store/reducers/dateSlice';
 
 import Weather from './Pages/weather/weather';
 import News from './Pages/news/news';
@@ -12,6 +16,13 @@ import Page404 from './Pages/404/404';
 function App() {
 
   const location = useLocation();
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    let date = new Date();
+    dispatch(addDate(date));
+  }, []);
+
 
   return (
     <Routes>

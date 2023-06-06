@@ -1,12 +1,19 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useSelector } from 'react-redux';
+
+import { getDayName, getMonthName, getDate } from './../../selectors/dateSelector';
 
 import "./weather.css";
 
 function Weather() {
   const API_KEY = "edd2105acc391569bc7ab493a69244db";
-  let date = new Date();
+
   const navigate = useNavigate();
+
+  const day = useSelector(getDayName);
+  const month = useSelector(getMonthName);
+  const date = useSelector(getDate);
 
   // const [geoStatus, setGeoStatus] = useState(null);
   const [geoData, setGeoData] = useState(undefined);
@@ -86,85 +93,6 @@ function Weather() {
   //   }
   // };
 
-  function getDayName() {
-    let dayName;
-    let month = date.getDay();
-    switch (month) {
-      case 0:
-        dayName = "Sun";
-        break;
-      case 1:
-        dayName = "Mon";
-        break;
-      case 2:
-        dayName = "Tue";
-        break;
-      case 3:
-        dayName = "Wed";
-        break;
-      case 4:
-        dayName = "Thur";
-        break;
-      case 5:
-        dayName = "Fri";
-        break;
-      case 6:
-        dayName = "Sat";
-        break;
-      default:
-        dayName = "Day";
-    }
-
-    return dayName;
-  }
-
-  function getMonthName() {
-    let monthName;
-    let month = date.getMonth();
-    switch (month) {
-      case 0:
-        monthName = "Jan";
-        break;
-      case 1:
-        monthName = "Feb";
-        break;
-      case 2:
-        monthName = "Mar";
-        break;
-      case 3:
-        monthName = "Apr";
-        break;
-      case 4:
-        monthName = "May";
-        break;
-      case 5:
-        monthName = "Jun";
-        break;
-      case 6:
-        monthName = "Jul";
-        break;
-      case 7:
-        monthName = "Aug";
-        break;
-      case 8:
-        monthName = "Sep";
-        break;
-      case 9:
-        monthName = "Oct";
-        break;
-      case 10:
-        monthName = "Nov";
-        break;
-      case 11:
-        monthName = "Dec";
-        break;
-      default:
-        monthName = "Month";
-    }
-
-    return monthName;
-  }
-
   return (
     <div className={`weather ${sidebarState ? "makeSmaller" : ""}`}>
       <div className="weather__container">
@@ -188,7 +116,7 @@ function Weather() {
           </div>
 
           <h2 className="weather__date">
-            {getDayName()} - {getMonthName()} - {date.getDate()}
+            {day} - {month} - {date}
           </h2>
 
           <div className="weather__block">
