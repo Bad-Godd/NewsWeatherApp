@@ -1,0 +1,21 @@
+.page404 {
+    width: 100vw;
+    height: 100vh;
+    background-color: #007155;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page404__title, .page404__subtitle {
+    color: white;
+}
+
+.page404__title {
+    font-size: 200px;
+}
+
+.page404__subtitle {
+    font-size: 40px;
+    font-weight: 300;
+}

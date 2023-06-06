@@ -1,49 +1,25 @@
-.hidden {
-    display: none;
-}
-
 .weather {
     background-color: #007155;
     height: 100vh;
     width: 100vw;
-    padding-left: 15vw;
+    transition: width 1s;
+}
+
+.makeSmaller {
+    width: 15vw;
+}
+
+.weather__container{
+    width: fit-content;
+    max-width: 960px;
+    margin: 0 auto;
     display: flex;
-    align-items: center;
+    gap: 290px;
 }
 
-.weather__logo {
-    border-radius: 200px;
-    background-color: white;
-    height: 386px;
-    width: 386px;
-    background-image: url('../../assets/main.gif');
-    background-position: center center;
-    background-size: contain; 
-    position: relative;
-    left: 0;
-    transition: left 2s cubic-bezier(0, 0, 1, 1);
-}
-
-.goLeft {
-    left: 600px;
-}
-
-.weather__container {
-    width: 306px;
-    display: grid;
-    gap: 6vh;
-    margin-right: 300px;
-}
-
-.weather__btn {
-    width: 100%;
-    padding: 5px 10px;
-    border-radius: 50px;
-}
-
-.weather__btn:hover {
-    background-color: #007155;
-    color: white;
+.weather__left {
+    width: 300px;
+    padding-top: 10vh;
 }
 
 .weather__geo {
@@ -69,12 +45,13 @@
     font-size: 14px;
     text-align: center;
     color: white;
+    margin-bottom: 40px;
 }
 
 .weather__block {
+    width: 100%;
     background-color: white;
     height: 161px;
-    width: 306px;
     padding: 21px 36px;
     border-radius: 10px;
     display: flex;
@@ -99,13 +76,6 @@
     font-size: 64px;
 }
 
-.temp__symbol {
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    font-size: 24px;
-    position: absolute;
-}
-
 .weather__feeling {
     font-weight: 700;
     font-size: 12px;
@@ -120,6 +90,7 @@
     display: flex;
     padding-left: 36px;
     gap: 70px;
+    margin: 40px 0;
 }
 
 .info__list {
@@ -131,6 +102,7 @@
 }
 
 .weather__menu {
+    width: 100%;
     background-color: white;
     border-radius: 50px;
     display: flex;
@@ -139,12 +111,47 @@
     padding: 12px;
 }
 
-.menu__item {
+.menu__btn {
+    border: none;
+    background: none;
+}
+
+.menu__icon {
     fill: #414B5A;
 }
 
-.menu__item:hover {
-    fill: #8DBBFF;
-    transform: rotate(-15deg);
+.menu__btn:hover .menu__icon {
+    fill: #EB7B2A;
+    -webkit-transform: scale(1.5);
+    -ms-transform: scale(1.5);
+    transform: scale(1.5);
+}
+
+.weather__logo {
+    border-radius: 200px;
+    background-color: white;
+    height: 386px;
+    width: 386px;
+    margin-top: 20vh;
+    background-image: url('../../assets/main.gif');
+    background-position: center center;
+    background-size: contain; 
+    position: relative;
+    transition: all 1s;
+    /* transition: width 2s, height 2s;
+    transition: right 2s; */
+}
+
+.goRight {
+    height: 146px;
+    width: 146px;
+    margin-top: 6vh;
+    /* right: 775px;
+    transform: translate(-750px,-200px);
+    position: absolute; */
+}
+
+.hidden {
+    display: none;
 }
 

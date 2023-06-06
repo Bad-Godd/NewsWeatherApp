@@ -1,0 +1,52 @@
+.newsCard {
+    height: 195px;
+    width: 578px;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    padding: 15px 33px 15px 18px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    gap: 28px;
+}
+
+.newsCard__info {
+    position: relative;
+}
+
+.newsCard__title {
+    font-weight: 700;
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+.newsCard__text {
+    font-weight: 500;
+    font-size: 16px;
+    opacity: .5;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.newsCard__author{
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.newsCard__date {
+    font-weight: 700;
+    font-size: 12px;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+}
+
+.newsCard__bookmark {
+    fill: #414B5A;
+    position: absolute;
+    right: -5px;
+    top: 15px;
+}
+
+.newsCard__bookmark:hover {
+    fill: #EB7B2A;
+}

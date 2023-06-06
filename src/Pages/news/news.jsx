@@ -1,20 +1,26 @@
-import './news.css';
-import Sidebar from '../../elements/sidebar/sidebar';
-import NewsCard from '../../blocks/NewsCard/NewsCard';
+import { useState, useEffect } from 'react';
 
-function News() {
+import './news.css';
+
+import Sidebar from '../../components/blocks/sidebar/sidebar';
+import NewsCard from '../../components/elements/NewsCard/NewsCard';
+
+
+function News(location) {
+
+
     return (
         <div className='news'>
 
             <header>
-                <Sidebar/>
+                <Sidebar location={location}/>
             </header>
 
             <main className='news__main'>
 
                 <h1 className='news__title'>AgriNews Daily</h1>
 
-                <span className='news__info'>Trending....</span>
+                <h2 className='news__subtitle'>Trending....</h2>
 
                 <div className='news__body'>
 
