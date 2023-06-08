@@ -3,16 +3,25 @@ import "./moonCalendar.css";
 import { useSelector } from "react-redux";
 
 import Sidebar from "../../components/blocks/sidebar/sidebar";
-import GardenCard from "../../components/elements/GardenCard/gardenCard";
+import GardenCard from "../../components/elements/CropsCard/CropsCard";
 import { dates } from "../../dates";
 import { moonphases } from "../../moonphases";
-import { getDayFullName, getMonthName, getDate } from "./../../selectors/dateSelector";
-
+import { crops } from "../../crops";
+import {
+  getDayFullName,
+  getMonthName,
+  getDate,
+  getMonthFullName,
+} from "./../../selectors/dateSelector";
+import { getCropsArticleID } from "./../../selectors/cropsArticleSelector";
+import { useEffect, useState } from "react";
 
 function MoonCalendar(location) {
   const day = useSelector(getDayFullName);
   const month = useSelector(getMonthName);
+  const fullmonth = useSelector(getMonthFullName);
   const date = useSelector(getDate);
+  const cropsArticle = useSelector(getCropsArticleID);
 
   const favorableDates = dates[month].favorable.join(", ");
   const unfavorableDates = dates[month].unfavorable.join(", ");
@@ -23,21 +32,43 @@ function MoonCalendar(location) {
     let currentMoonPhase;
     if (moon.full.includes(date)) {
       currentMoonPhase = "Full moon";
-      url = './images/fullmoon.png';
+      url = "./images/icons/fullmoon.png";
     } else if (moon.new.includes(date)) {
       currentMoonPhase = "New moon";
-      url = './images/newmoon.png';
+      url = "./images/icons/newmoon.png";
     } else if (moon.waxing.includes(date)) {
       currentMoonPhase = "Waxing moon";
-      url = './images/waxingmoon.png';
+      url = "./images/icons/waxingmoon.png";
     } else if (moon.waning.includes(date)) {
       currentMoonPhase = "Waning moon";
-      url = './images/waningmoon.png';
-    } let moondata = [url, currentMoonPhase];
+      url = "./images/icons/waningmoon.png";
+    }
+    let moondata = [url, currentMoonPhase];
     return moondata;
   }
 
   let moondataArray = getMoonPhase();
+
+  function getFavorableCropsArray() {
+    let favorableCropsArray = [];
+    for (let key in crops) {
+      let monthArray = crops[key].favorable[fullmonth];
+      if (monthArray.includes(date)) {
+        favorableCropsArray.push(crops[key]);
+      }
+    }
+    return favorableCropsArray;
+  }
+
+  let cropsList = getFavorableCropsArray();
+
+  const [isCropsListEmpty, setCropsListEmpty] = useState(false);
+
+  useEffect(() => {
+    if (!cropsList) {
+      setCropsListEmpty(true);
+    }
+  }, []);
 
   return (
     <div className="page">
@@ -46,16 +77,16 @@ function MoonCalendar(location) {
       </header>
 
       <main className="page__main">
-        <h1 className="page__title">Moon calendar</h1>
+        <h1 className="page__title">Moon calendar for {fullmonth}</h1>
         <div className="MoonCalendar__body">
           <div>
             <div className="body__top">
               <div className="moon__info">
                 <div className="moon__infoblock">
-                  <span className="moon__date">
+                  <h2 className="moon__date">
                     {date}
                     <span className="moon__month">{month}</span>
-                  </span>
+                  </h2>
                   <span className="moon__day">{day}</span>
                 </div>
 
@@ -120,58 +151,7 @@ function MoonCalendar(location) {
                   Favorable days:
                   <span className="daysInfo__text">{` ${favorableDates}`}</span>
                 </h3>
-                {/* <h3 className="daysInfo__title">
-                  <svg
-                    className="daysInfo__icon"
-                    width="18px"
-                    height="18px"
-                    viewBox="0 0 210.19 202.01"
-                    fill="#8DBBFF"
-                  >
-                    <path
-                      d="M172.01 73.1c0,3.74 1.17,6.99 2.45,9.45 1.77,3.39 4.26,5.9 7.05,8.15l8.21 
-                        6.97c1.39,1.11 1.98,1.78 2.81,3.35 -1.44,2.74 -3.61,3.98 -5.85,6.05 -12.24,11.38 
-                        -18.04,13.43 -12.7,34.67 0.66,2.63 2.13,7.86 2.13,10.59 -14.45,3.37 -26.07,-0.71 
-                        -34.72,12.49 -3.43,5.25 -6.25,15.13 -9.2,19.53 -1.06,-0.5 -1.97,-0.76 -3.16,-1.35 
-                        -1.39,-0.7 -1.87,-1.07 -3.08,-1.85 -13.76,-8.91 -20.58,-12.35 -35.61,-3.75 -2.3,1.31 
-                        -10.03,6.45 -11.93,6.95 -3.68,-2.46 -5.02,-15.56 -13.64,-24.12 -6.79,-6.74 -17.96,
-                        -5.69 -26.49,-6.77 -1.03,-0.13 -2.98,-0.61 -4.21,-0.72 0,-13.42 9.65,-22.31 -0.7,
-                        -36.24 -3.37,-4.53 -6.3,-6.08 -9.46,-9.02 -2,-1.86 -4.81,-3.88 -6.26,-6.05 1.37,-5.89 
-                        20.53,-13.27 20.53,-27.92 0,-11.02 -4.11,-17.49 -4.11,-23.4 0,-2.83 21.48,-0.04 30.07,
-                        -7.69 6.94,-6.18 8.99,-16.31 13.45,-24.74 2.64,0.62 4.59,1.98 6.57,3.29 12.91,8.54 
-                        20.83,12.97 35.38,4.19 2.1,-1.27 4.12,-2.49 6.08,-3.78 1.44,-0.95 4.58,-3.12 6.57,
-                        -3.29 2.57,3.84 3.89,8.44 6.01,12.87 4.96,10.33 8.22,14.97 20.95,16.82 5.35,0.78 
-                        11.79,0.72 16.96,1.92 0,6.02 -4.1,14.71 -4.1,23.4zm-151.48 -0.82c0,5.7 -20.53,13.99 
-                        -20.53,27.51 0,7.84 1.9,9.67 5.98,14.95 1.47,1.91 5.52,4.97 7.06,6.5 6.85,6.82 8.79,
-                        4.65 6.25,14.67 -1.07,4.24 -2.87,10.59 -2.87,15.6 0,14.29 10.62,18.2 21.87,19.6 15.58,
-                        1.92 13.87,-1.31 18.48,9.44 2.3,5.37 5.36,13.89 10.31,17.6 7.31,5.47 14.4,4.66 21.87,
-                        0.44 1.21,-0.68 2.04,-0.97 3.25,-1.68 12.4,-7.35 11.45,-8.87 19.38,-3.85 8.88,5.61 
-                        20.3,13.37 30.71,5.5 5.58,-4.22 7.83,-10.8 10.56,-16.94 4.73,-10.62 2.69,-9.35 17.08,
-                        -10.43 6.83,-0.51 15.7,-2.09 19.74,-7.76 8.52,-11.98 -0.01,-23.13 -0.01,-34.49 0,-1.96 
-                        5.42,-5.82 7.08,-7.3l4.73 -4.3c3.78,-3.32 8.72,-9.14 8.72,-14.68 0,-4.76 -0.09,-7.04 
-                        -3.12,-11.66 -5.06,-7.74 -17.41,-14.55 -17.41,-17.9 0,-9.05 11.25,-29.43 -4.79,-38.31 
-                        -10.06,-5.57 -24.57,-2.73 -27.98,-6.09 -4.06,-4 -7.61,-28.26 -23.47,-28.26 -6.85,0 
-                        -10.23,1.92 -15.73,5.21 -12.64,7.56 -11.44,8.42 -19.24,3.49 -2.07,-1.3 -4.13,-2.48 
-                        -6.08,-3.77 -15.2,-10.12 -26.22,-5.51 -33.25,10.27 -1.3,2.91 -3.91,9.64 -5.34,11.9 
-                        -2.16,3.39 -10,3.1 -13.95,3.29 -18.73,0.91 -26.05,10.81 -22.27,27.18 0.55,2.37 1.12,
-                        4.74 1.65,6.97 0.58,2.44 1.32,4.44 1.32,7.3z"
-                    />
-                    <rect
-                      class="fil0"
-                      x="55.23"
-                      y="92.11"
-                      width="99.72"
-                      height="17.78"
-                      rx="6.84"
-                      ry="8.64"
-                    />
-                  </svg>
-                  Neutral days:
-                  <span className="daysInfo__text">
-                    {" "}
-                    1, 2, 4, 5, 6, 7, 11, 16, 17, 19, 26, 29, 30, 31
-                  </span>
-                </h3> */}
+
                 <h3 className="daysInfo__title">
                   <svg
                     className="daysInfo__icon"
@@ -207,40 +187,39 @@ function MoonCalendar(location) {
                 </h3>
               </div>
             </div>
-
-            <h2 className="moonCalendar__title">Suitable for planting:</h2>
-            <div className="moonCalendar__planting">
-              {/* {crops.map(item => {
-                        return (
-                            <GardenCard 
-                                key = {item.id}
-                                url = {item.url}
-                                title = {item.title}
-                                productId = {item.id}/>)
-                    })} */}
-              <GardenCard /> <GardenCard /> <GardenCard /> <GardenCard /> <GardenCard />
-              <GardenCard />
-            </div>
-
-            <h2 className="moonCalendar__title">Suitable for gardening activities:</h2>
-            <div className="moonCalendar__planting">
-              <GardenCard /> <GardenCard /> <GardenCard /> <GardenCard /> <GardenCard />
-              <GardenCard />
-            </div>
+            {!isCropsListEmpty && (
+              <h2 className="moonCalendar__title">
+                We can't find any crops that are good to plant today. Maybe it's better to take a
+                day off.
+              </h2>
+            )}
+            {isCropsListEmpty && (
+              <div>
+                <h2 className="moonCalendar__title">Best to plant today:</h2>
+                <div className="moonCalendar__planting">
+                  {cropsList.map((item) => {
+                    return <GardenCard key={item.id} url={item.url} name={item.name} />;
+                  })}
+                </div>
+              </div>
+            )}
           </div>
-          <article className="moon__article">
-            <div className="article__image">
-              <img src="./images/tomato.png" alt="" />
-            </div>
-            <h2 className="article__title">Tomato</h2>
-            <p className="article__text">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Convallis cum consequat
-              consequat duis urna egestas quis purus sit. Pellentesque vel condimentum enim eu.
-              Cursus diam egestas maecenas vitae velit lectus. Pulvinar lorem nunc pharetra, mauris,
-              scelerisque. Bibendum at congue mattis risus odio. Nibh orci vitae duis sed. Ipsum et
-              risus aliquam a aliquam vestibulum justo ipsum in. Nulla.
-            </p>
-          </article>
+
+          {cropsArticle && (
+            <article className="moon__article">
+              <div className="article__image">
+                <img src={crops[cropsArticle].url} alt="" />
+              </div>
+              <h2 className="article__title">{crops[cropsArticle].name}</h2>
+              <p className="article__text">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Convallis cum consequat
+                consequat duis urna egestas quis purus sit. Pellentesque vel condimentum enim eu.
+                Cursus diam egestas maecenas vitae velit lectus. Pulvinar lorem nunc pharetra,
+                mauris, scelerisque. Bibendum at congue mattis risus odio. Nibh orci vitae duis sed.
+                Ipsum et risus aliquam a aliquam vestibulum justo ipsum in. Nulla.
+              </p>
+            </article>
+          )}
         </div>
       </main>
     </div>

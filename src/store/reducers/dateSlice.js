@@ -105,6 +105,47 @@ const dateSlice = createSlice({
         default:
           state.month = "Month";
       }
+
+      switch (month) {
+        case 0:
+          state.fullmonth = "January";
+          break;
+        case 1:
+          state.fullmonth = "February";
+          break;
+        case 2:
+          state.fullmonth = "March";
+          break;
+        case 3:
+          state.fullmonth = "April";
+          break;
+        case 4:
+          state.fullmonth = "May";
+          break;
+        case 5:
+          state.fullmonth = "June";
+          break;
+        case 6:
+          state.fullmonth = "July";
+          break;
+        case 7:
+          state.fullmonth = "August";
+          break;
+        case 8:
+          state.fullmonth = "September";
+          break;
+        case 9:
+          state.fullmonth = "October";
+          break;
+        case 10:
+          state.fullmonth = "November";
+          break;
+        case 11:
+          state.fullmonth = "December";
+          break;
+        default:
+          state.fullmonth = "Month";
+      }
     },
   },
 });

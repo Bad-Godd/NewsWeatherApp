@@ -34,7 +34,7 @@ function App() {
 
       <Route 
         path='/weather'
-        element={<Weather />}>
+        element={<Weather location={location.pathname}/>}>
       </Route> 
 
       <Route 

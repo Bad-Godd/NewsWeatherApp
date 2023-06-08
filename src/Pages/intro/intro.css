@@ -12,6 +12,7 @@
     align-items: center;
     padding-top: 20vh;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .intro__block {

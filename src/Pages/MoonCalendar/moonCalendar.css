@@ -110,11 +110,13 @@
     font-size: 24px;
     margin-top: 2em;
     margin-bottom: 1em;
+    line-height: 1.2em;
 }
 
 .moonCalendar__planting {
     display: flex;
     gap: 20px;
+    flex-wrap: wrap;
 }
 
 .moon__article {

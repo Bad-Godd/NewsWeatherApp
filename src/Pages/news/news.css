@@ -47,6 +47,7 @@
     text-align: center;
     margin-top: 38px;
     margin-bottom: 15px;
+    text-transform: capitalize;
 }
 
 .article__text {
