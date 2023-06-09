@@ -37,12 +37,12 @@
 
 .geo__info {
     font-weight: 700;
-    font-size: 20px;
+    font-size: 1.25em;
 }
 
 .weather__date {
     font-weight: 300;
-    font-size: 14px;
+    font-size: 0.875em;
     text-align: center;
     color: white;
     margin-bottom: 40px;
@@ -73,17 +73,17 @@
 .weather__temp {
     color: black;
     font-weight: 500;
-    font-size: 64px;
+    font-size: 4em;
 }
 
 .weather__feeling {
     font-weight: 700;
-    font-size: 12px;
+    font-size: 0.75em;
 }
 
 .weather__condition {
     font-weight: 700;
-    font-size: 20px;
+    font-size: 1.25em;
 }
 
 .weather__info {
@@ -97,7 +97,7 @@
     list-style-type: none;
     text-align: left;
     font-weight: 700;
-    font-size: 14px;
+    font-size: 0.875em;
     line-height: 2.5;
 }
 

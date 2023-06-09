@@ -1,0 +1,14 @@
+.pollution__info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.pollution__plot {
+    width: 360px;
+}
+
+.pollution__name {
+    margin-bottom: 20px;
+    text-align: center;
+}

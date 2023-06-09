@@ -27,14 +27,14 @@
 .moon__date {
     color: white;
     font-weight: 500;
-    font-size: 64px;
+    font-size: 4em;
     position: relative;
 }
 
 .moon__month {
     color: white;
     font: 300;
-    font-size: 12px;
+    font-size: 0.188em;
     position: absolute;
     top: 7px;
 }
@@ -70,13 +70,13 @@
 .moon__day {
     color: white;
     font-weight: 700;
-    font-size: 12px;
+    font-size: 0.75em;
 }
 
 .moon__condition {
     color: white;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 1.25em;
     text-align: center;
 }
 
@@ -93,7 +93,7 @@
 }
 
 .daysInfo__title {
-    font-size: 20px;
+    font-size: 1.25em;
     line-height: 1.2em;
 }
 
@@ -107,7 +107,7 @@
 
 .moonCalendar__title {
     font-weight: 400;
-    font-size: 24px;
+    font-size: 1.5px;
     margin-top: 2em;
     margin-bottom: 1em;
     line-height: 1.2em;

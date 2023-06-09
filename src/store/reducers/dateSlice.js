@@ -3,15 +3,19 @@ import { createSlice } from "@reduxjs/toolkit";
 const dateSlice = createSlice({
   name: "date",
   initialState: {
-    list: {},
+    date: 0,
+    day: '',
+    month: '',
+    fullday: '',
+    fullmonth: '',
   },
   reducers: {
     addDate(state, action) {
-      state.list = action.payload;
-
-      state.date = state.list.getDate()
-
-      let day = state.list.getDay();
+      const {type, payload} = action;
+      state.date = payload.date;
+      let day = payload.day;
+      let month = payload.month;
+      
       switch (day) {
         case 0:
           state.day = "Sun";
@@ -64,7 +68,6 @@ const dateSlice = createSlice({
             state.fullday = "Day";
       }
 
-      let month = state.list.getMonth();
       switch (month) {
         case 0:
           state.month = "Jan";

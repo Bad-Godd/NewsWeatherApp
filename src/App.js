@@ -12,6 +12,7 @@ import News from './Pages/news/news';
 import Intro from './Pages/intro/intro';
 import MoonCalendar from './Pages/MoonCalendar/moonCalendar';
 import Page404 from './Pages/404/404';
+import Pollution from './Pages/Pollution/Pollution';
 
 function App() {
 
@@ -19,16 +20,19 @@ function App() {
   const dispatch = useDispatch();
   
   useEffect(() => {
-    let date = new Date();
-    dispatch(addDate(date));
+    let data = new Date();
+    let date = data.getDate();
+    let day = data.getDay();
+    let month = data.getMonth();
+    dispatch(addDate({date: date, day: day, month: month}));
   }, []);
-
 
   return (
     <Routes>
       
       <Route 
         path='/'
+        index
         element={<Intro />}>
       </Route>
 
@@ -38,15 +42,18 @@ function App() {
       </Route> 
 
       <Route 
-        path='/news' 
-        index 
-        element = {<News location={location.pathname}/>}>
+        path='/moon-calendar' 
+        element = {<MoonCalendar location={location.pathname}/>}>
       </Route>
 
       <Route 
-        path='/moon-calendar' 
-        index 
-        element = {<MoonCalendar location={location.pathname}/>}>
+        path='/news' 
+        element = {<News location={location.pathname}/>}>
+      </Route> 
+
+      <Route 
+        path='/pollution' 
+        element = {<Pollution location={location.pathname}/>}>
       </Route>
 
       <Route 
