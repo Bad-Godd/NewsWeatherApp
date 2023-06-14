@@ -1,0 +1,77 @@
+.intro {
+    background-color: #007155;
+    height: 100vh;
+    width: 100vw;
+}
+
+.intro__container {
+    width: 100vw;
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    padding-top: 20vh;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.intro__block {
+    width: 30vw;
+}
+
+.intro__logo {
+    border-radius: 200px;
+    background-color: white;
+    height: 386px;
+    width: 386px;
+    background-image: url('../../assets/main.gif');
+    background-position: center center;
+    background-size: contain; 
+    position: relative;
+    left: 0;
+    transition: left 2s;
+}
+
+.goLeft {
+    left: 575px;
+}
+
+.intro__greeting {
+    color: white;
+    font-weight: 900;
+    font-size: 5em;
+}
+
+.intro__text {
+    color: white;
+    font-weight: 300;
+    font-size: 1.5em;
+    line-height: 1.2em;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.intro__btn {
+    border-radius: 30px;
+    border: none;
+    width: 110px;
+    height: 45px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: 500;
+    font-size: 1.5em;
+    text-align: center;
+    position: relative;
+}
+
+.intro__btn:hover {
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+    color: #EB7B2A;
+}
+
+.hidden {
+    display: none;
+}
+

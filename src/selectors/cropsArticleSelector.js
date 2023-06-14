@@ -1,0 +1,1 @@
+export const getCropsArticleID = (state) => state.cropsArticle.article;

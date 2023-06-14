@@ -1,0 +1,156 @@
+.moonCalendar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.moonCalendar__left {
+    width: 61%;
+}
+
+.body__top {
+    display: flex;
+    justify-content: space-between;
+    width: 98%;
+}
+
+.moon__info {
+    width: 300px;
+    background-color: #007155;
+    height: 161px;
+    padding: 21px 36px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.moon__infoblock {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.moon__date {
+    color: white;
+    font-weight: 500;
+    font-size: 4em;
+    position: relative;
+}
+
+.moon__month {
+    color: white;
+    font: 300;
+    font-size: 0.188em;
+    position: absolute;
+    top: 7px;
+}
+
+.moon__image {
+    width: 80px;
+    height: 80px;
+}
+
+.moon__image IMG {
+    position: relative;
+}
+
+.moon__base {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    position: absolute;
+    top: 0px; 
+    left: 0px; 
+    z-index: 1; 
+}
+
+.moon__cover {
+    width: 85px;
+    height: 85px;
+    position: absolute;
+    left: 10px; 
+    top: -90px; 
+    z-index: 2;
+}
+
+.moon__day {
+    color: white;
+    font-weight: 700;
+    font-size: 0.75em;
+}
+
+.moon__condition {
+    color: white;
+    font-weight: 700;
+    font-size: 1.25em;
+    text-align: center;
+}
+
+.days__info {
+    width: 385px;
+    border: 2px solid #007155;
+    height: 161px;
+    padding: 21px 30px;
+    border-radius: 10px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.daysInfo__title {
+    font-size: 1.25em;
+    line-height: 1.2em;
+}
+
+.daysInfo__text {
+    font-weight: 300;
+}
+
+.daysInfo__icon {
+    margin-right: 4px;
+}
+
+.moonCalendar__title {
+    font-weight: 400;
+    font-size: 1.5em;
+    margin-top: 1.5em;
+    margin-bottom: 1em;
+    line-height: 1.2em;
+}
+
+.moonCalendar__planting {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.moonCalendar__picture {
+    width: 80%;
+    height: auto;
+}
+
+.moon__article {
+    width: 370px;
+    height: 590px;
+    padding-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 20px;
+    box-shadow: 0px 3px 3px grey;
+    position: relative;
+}
+
+.article__image {
+    width: 400px;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.article__image IMG {
+    max-width: 100%;
+    height: auto;
+    max-height:100%
+}
+

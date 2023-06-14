@@ -1,0 +1,156 @@
+.weather {
+    background-color: #007155;
+    height: 100vh;
+    width: 100vw;
+    transition: width 1s;
+}
+
+.makeSmaller {
+    width: 15vw;
+}
+
+.weather__container{
+    width: fit-content;
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    gap: 290px;
+}
+
+.weather__left {
+    width: 300px;
+    padding-top: 10vh;
+}
+
+.weather__geo {
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+    color: white;
+    margin-bottom: 12px;
+}
+
+.geo__pointer {
+    position: relative;
+    bottom: 7px;
+}
+
+.geo__info {
+    font-weight: 700;
+    font-size: 1.25em;
+}
+
+.weather__date {
+    font-weight: 300;
+    font-size: 0.875em;
+    text-align: center;
+    color: white;
+    margin-bottom: 40px;
+}
+
+.weather__block {
+    width: 100%;
+    background-color: white;
+    height: 161px;
+    padding: 21px 36px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.weather__block_top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.weather__block_bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.weather__temp {
+    color: black;
+    font-weight: 500;
+    font-size: 4em;
+}
+
+.weather__feeling {
+    font-weight: 700;
+    font-size: 0.75em;
+}
+
+.weather__condition {
+    font-weight: 700;
+    font-size: 1.25em;
+}
+
+.weather__info {
+    display: flex;
+    padding-left: 36px;
+    gap: 70px;
+    margin: 40px 0;
+}
+
+.info__list {
+    list-style-type: none;
+    text-align: left;
+    font-weight: 700;
+    font-size: 0.875em;
+    line-height: 2.5;
+}
+
+.weather__menu {
+    width: 100%;
+    background-color: white;
+    border-radius: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 12px;
+}
+
+.menu__btn {
+    border: none;
+    background: none;
+}
+
+.menu__icon {
+    fill: #414B5A;
+}
+
+.menu__btn:hover .menu__icon {
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+}
+
+.weather__logo {
+    border-radius: 200px;
+    background-color: white;
+    height: 386px;
+    width: 386px;
+    margin-top: 20vh;
+    background-image: url('../../assets/main.gif');
+    background-position: center center;
+    background-size: contain; 
+    position: relative;
+    transition: all 1s;
+    /* transition: width 2s, height 2s;
+    transition: right 2s; */
+}
+
+.goRight {
+    height: 146px;
+    width: 146px;
+    margin-top: 6vh;
+    /* right: 775px;
+    transform: translate(-750px,-200px);
+    position: absolute; */
+}
+
+.hidden {
+    display: none;
+}
+
