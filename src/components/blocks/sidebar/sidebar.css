@@ -22,19 +22,19 @@
 
 .sidebar__nav {
     display: grid;
-    gap: 1em;
+    gap: 1.5em;
     margin-top: 5vh;
 }
 
 .nav__item {
     display: flex;
-    gap: 1em;
+    gap: 1.5em;
     border: none;
     background: none;
     align-items: center;
 }
 
-.nav__item:hover .nav__icon{
+.nav__item:hover .nav__icon {
     -webkit-transform: scale(1.2);
     -ms-transform: scale(1.2);
     transform: scale(1.2);
@@ -46,6 +46,12 @@
     font-size: 1.5em;
     line-height: 1.2em;
     text-align: left;
+}
+
+.nav__item:hover .nav__title {
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
 }
 
 .activetitle {

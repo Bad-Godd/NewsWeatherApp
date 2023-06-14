@@ -17,58 +17,65 @@ import { getCropsArticleID } from "./../../selectors/cropsArticleSelector";
 import { useEffect, useState } from "react";
 
 function MoonCalendar(location) {
+
   const day = useSelector(getDayFullName);
   const month = useSelector(getMonthName);
   const fullmonth = useSelector(getMonthFullName);
   const date = useSelector(getDate);
   const cropsArticle = useSelector(getCropsArticleID);
 
-  const favorableDates = dates[month].favorable.join(", ");
-  const unfavorableDates = dates[month].unfavorable.join(", ");
+  const favorableDates = dates[month]?.favorable.join(", ");
+  const unfavorableDates = dates[month]?.unfavorable.join(", ");
 
-  function getMoonPhase() {
-    const moon = moonphases[month];
-    let url;
-    let currentMoonPhase;
-    if (moon.full.includes(date)) {
-      currentMoonPhase = "Full moon";
-      url = "./images/icons/fullmoon.png";
-    } else if (moon.new.includes(date)) {
-      currentMoonPhase = "New moon";
-      url = "./images/icons/newmoon.png";
-    } else if (moon.waxing.includes(date)) {
-      currentMoonPhase = "Waxing moon";
-      url = "./images/icons/waxingmoon.png";
-    } else if (moon.waning.includes(date)) {
-      currentMoonPhase = "Waning moon";
-      url = "./images/icons/waningmoon.png";
-    }
-    let moondata = [url, currentMoonPhase];
-    return moondata;
-  }
-
-  let moondataArray = getMoonPhase();
-
-  function getFavorableCropsArray() {
-    let favorableCropsArray = [];
-    for (let key in crops) {
-      let monthArray = crops[key].favorable[fullmonth];
-      if (monthArray.includes(date)) {
-        favorableCropsArray.push(crops[key]);
-      }
-    }
-    return favorableCropsArray;
-  }
-
-  let cropsList = getFavorableCropsArray();
-
-  const [isCropsListEmpty, setCropsListEmpty] = useState(false);
+  const [moonPhase, setMoonPhase] = useState([]);
 
   useEffect(() => {
-    if (!cropsList) {
-      setCropsListEmpty(true);
+    let moon = moonphases[month];
+    let url;
+    let currentMoonPhase;
+    if (date) {
+      if (moon.full.includes(date)) {
+        currentMoonPhase = "Full moon";
+        url = "./images/icons/fullmoon.png";
+      } else if (moon.new.includes(date)) {
+        currentMoonPhase = "New moon";
+        url = "./images/icons/newmoon.png";
+      } else if (moon.waxing.includes(date)) {
+        currentMoonPhase = "Waxing moon";
+        url = "./images/icons/waxingmoon.png";
+      } else if (moon.waning.includes(date)) {
+        currentMoonPhase = "Waning moon";
+        url = "./images/icons/waningmoon.png";
+      }
+      let moondata = [url, currentMoonPhase];
+      setMoonPhase(moondata);
     }
-  }, []);
+  },[date, month]);
+
+  const [cropsList, setCropsList] = useState([]);
+
+  useEffect (() => {
+    let favorableCropsArray = [];
+    if (date) {
+      for (let key in crops) {
+        let monthArray = crops[key].favorable[fullmonth];
+        if (monthArray.includes(date)) {
+          favorableCropsArray.push(crops[key]);
+        }
+      }
+      setCropsList(favorableCropsArray);
+    }
+  },[date, fullmonth]);
+
+  const [isCropsListEmpty, setCropsListEmpty] = useState(true);
+
+  useEffect(() => {
+    if (cropsList.length > 0) {
+      setCropsListEmpty(false)
+    } else {
+      setCropsListEmpty(true)
+    }
+  },[cropsList])
 
   return (
     <div className="page">
@@ -78,8 +85,8 @@ function MoonCalendar(location) {
 
       <main className="page__main">
         <h1 className="page__title">Moon calendar for {fullmonth}</h1>
-        <div className="MoonCalendar__body">
-          <div>
+        <div className="moonCalendar">
+          <div className="moonCalendar__left">
             <div className="body__top">
               <div className="moon__info">
                 <div className="moon__infoblock">
@@ -92,9 +99,9 @@ function MoonCalendar(location) {
 
                 <div className="moon__infoblock">
                   <div className="moon__image">
-                    <img className="moon__base" src={moondataArray[0]} alt="" />
+                    <img className="moon__base" src={moonPhase[0]} alt="" />
                   </div>
-                  <span className="moon__condition">{moondataArray[1]}</span>
+                  <span className="moon__condition">{moonPhase[1]}</span>
                 </div>
               </div>
 
@@ -161,25 +168,18 @@ function MoonCalendar(location) {
                     viewBox="0 0 1261.43 1212.34"
                   >
                     <path
-                      class="fil0"
                       d="M1032.31 438.73c0,22.43 7.04,41.94 14.73,56.72 10.58,20.31 25.52,35.36 42.3,48.86l49.28 41.88c8.34,6.63 11.9,10.67 16.87,20.08 -8.7,16.44 -21.69,23.86 -35.11,36.33 -73.46,68.29 -108.27,80.57 -76.25,208.07 3.97,15.79 12.81,47.13 12.81,63.56 -86.76,20.22 -156.48,-4.26 -208.36,74.97 -20.63,31.48 -37.55,90.76 -55.26,117.21 -6.35,-3.05 -11.78,-4.58 -18.94,-8.16 -8.36,-4.16 -11.26,-6.39 -18.49,-11.07 -82.56,-53.45 -123.53,-74.14 -213.74,-22.53 -13.78,7.87 -60.17,38.71 -71.58,41.76 -22.05,-14.77 -30.09,-93.44 -81.86,-144.8 -40.76,-40.43 -107.78,-34.12 -158.96,-40.61 -6.18,-0.78 -17.92,-3.69 -25.26,-4.3 0,-80.59 57.91,-133.9 -4.21,-217.52 -20.22,-27.22 -37.81,-36.49 -56.76,-54.11 -12.05,-11.21 -28.87,-23.34 -37.58,-36.34 8.23,-35.34 123.19,-79.66 123.19,-167.53 0,-66.18 -24.64,-105.01 -24.64,-140.44 0,-16.99 128.9,-0.24 180.47,-46.19 41.64,-37.09 53.92,-97.85 80.69,-148.44 15.85,3.69 27.55,11.86 39.42,19.71 77.49,51.25 125.04,77.82 212.37,25.13 12.6,-7.6 24.7,-14.89 36.46,-22.67 8.63,-5.7 27.52,-18.72 39.42,-19.71 15.41,23.01 23.34,50.64 36.11,77.23 29.77,62.01 49.34,89.86 125.73,100.94 32.08,4.65 70.74,4.31 101.78,11.54 0,36.08 -24.63,88.24 -24.63,140.43zm-909.12 -4.92c0,34.19 -123.19,83.94 -123.19,165.07 0,47.06 11.38,58.07 35.88,89.76 8.85,11.45 33.16,29.8 42.36,38.95 41.16,40.94 52.77,27.93 37.56,88.1 -6.43,25.41 -17.25,63.55 -17.25,93.62 0,85.76 63.71,109.23 131.25,117.58 93.5,11.57 83.23,-7.86 110.88,56.66 13.83,32.27 32.19,83.4 61.89,105.64 43.86,32.85 86.42,27.98 131.28,2.67 7.23,-4.08 12.22,-5.81 19.46,-10.11 74.42,-44.11 68.74,-53.22 116.35,-23.13 53.3,33.69 121.83,80.3 184.29,33.05 33.47,-25.31 47.02,-64.84 63.4,-101.67 28.35,-63.72 16.11,-56.15 102.48,-62.59 41.01,-3.06 94.23,-12.54 118.46,-46.61 51.15,-71.89 -0.04,-138.79 -0.04,-207 0,-11.71 32.52,-34.91 42.46,-43.77l28.39 -25.81c22.71,-19.94 52.33,-54.85 52.33,-88.1 0,-28.55 -0.52,-42.28 -18.67,-70.01 -30.37,-46.4 -104.51,-87.31 -104.51,-107.38 0,-54.31 67.53,-176.65 -28.75,-229.94 -60.39,-33.42 -147.44,-16.4 -167.93,-36.56 -24.38,-24.01 -45.68,-169.58 -140.85,-169.58 -41.14,0 -61.42,11.51 -94.41,31.25 -75.84,45.38 -68.66,50.53 -115.49,20.97 -12.37,-7.81 -24.78,-14.88 -36.47,-22.66 -91.23,-60.71 -157.36,-33.07 -199.54,61.63 -7.8,17.51 -23.46,57.88 -32.07,71.41 -12.97,20.4 -60.02,18.61 -83.71,19.76 -112.38,5.49 -156.31,64.87 -133.63,163.11 3.28,14.24 6.71,28.46 9.88,41.85 3.46,14.64 7.91,26.64 7.91,43.84z"
                     />
 
                     <rect
-                      class="fil1 str0"
                       transform="matrix(0.782514 0.622633 -6.22633E-001 0.782514 752.051 377.272)"
                       width="95.15"
                       height="509.33"
-                      rx="43.65"
-                      ry="43.65"
                     />
                     <rect
-                      class="fil1 str0"
                       transform="matrix(-7.63442E-001 0.645876 -6.45876E-001 -7.63442E-001 831.518 769.864)"
                       width="95.15"
                       height="509.33"
-                      rx="43.65"
-                      ry="43.65"
                     />
                   </svg>
                   Unfavorable days:
@@ -187,13 +187,16 @@ function MoonCalendar(location) {
                 </h3>
               </div>
             </div>
-            {!isCropsListEmpty && (
-              <h2 className="moonCalendar__title">
-                We can't find any crops that are good to plant today. Maybe it's better to take a
-                day off.
-              </h2>
-            )}
             {isCropsListEmpty && (
+              <div>
+                <h2 className="moonCalendar__title">
+                  We can't find any crops that are good to plant today. Maybe it's better to take a
+                  day off.
+                </h2>
+                <img className="moonCalendar__picture" src="./images/dayoff.png" alt="" />
+              </div>
+            )}
+            {!isCropsListEmpty && (
               <div>
                 <h2 className="moonCalendar__title">Best to plant today:</h2>
                 <div className="moonCalendar__planting">
@@ -218,6 +221,7 @@ function MoonCalendar(location) {
                 mauris, scelerisque. Bibendum at congue mattis risus odio. Nibh orci vitae duis sed.
                 Ipsum et risus aliquam a aliquam vestibulum justo ipsum in. Nulla.
               </p>
+              <button className="article__close"></button>
             </article>
           )}
         </div>

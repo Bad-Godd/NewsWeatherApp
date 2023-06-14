@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 
 import { addGeo } from './../../store/reducers/geoSlice';
-export { API_KEY } from './../../apikey.js';
 
 function Intro() {
 

@@ -2,10 +2,11 @@
 import './App.css';
 
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Routes, Route, useLocation } from "react-router-dom";
 
 import { addDate } from './store/reducers/dateSlice';
+import { getDate } from "./selectors/dateSelector";
 
 import Weather from './Pages/weather/weather';
 import News from './Pages/news/news';
@@ -19,13 +20,15 @@ function App() {
   const location = useLocation();
   const dispatch = useDispatch();
   
+  const dateFromStore = useSelector(getDate);
+  
   useEffect(() => {
-    let data = new Date();
-    let date = data.getDate();
-    let day = data.getDay();
-    let month = data.getMonth();
-    dispatch(addDate({date: date, day: day, month: month}));
-  }, []);
+      let data = new Date();
+      let date = data.getDate();
+      let day = data.getDay();
+      let month = data.getMonth();
+      dispatch(addDate({date: date, day: day, month: month}));
+  }, [dispatch]);
 
   return (
     <Routes>

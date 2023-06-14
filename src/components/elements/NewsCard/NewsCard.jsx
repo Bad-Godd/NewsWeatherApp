@@ -1,10 +1,8 @@
 import './NewsCard.css';
 
-function NewsCard() {
+function NewsCard(props) {
     return(
         <div className='newsCard'>
-            
-            <img src="/images/imgmini.png" alt="" />
 
             <div className='newsCard__info'>
 
@@ -13,19 +11,19 @@ function NewsCard() {
                 </svg>
             
                 <h1 className='newsCard__title'>
-                    Hay When You Need It
+                    {props.title}
                 </h1>
 
                 <p className='newsCard__text'>
-                    "Agriculture is the most healthful, most useful and most noble employment of man.
+                    {props.summary}
                 </p>
 
                 <h2 className='newsCard__author'>
-                    George Washington
+                    {props.author} / {props.rights}
                 </h2>
 
                 <span className='newsCard__date'>
-                    Thurday 09 2022
+                    {props.date}
                 </span>
 
 

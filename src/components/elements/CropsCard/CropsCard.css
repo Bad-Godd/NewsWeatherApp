@@ -1,9 +1,8 @@
 .gardenCard {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     border: none;
     border-radius: 100px;
-
     box-shadow: 0px 5px 5px grey;
     position: relative;
     display: flex;
@@ -24,6 +23,6 @@
 }
 
 .gardenCard__image {
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
 }

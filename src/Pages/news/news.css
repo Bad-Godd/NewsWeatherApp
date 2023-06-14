@@ -14,7 +14,7 @@
 .news__cards {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 20px;
     height: calc(100vh - 150px); 
     overflow: auto;
     -ms-overflow-style: none;

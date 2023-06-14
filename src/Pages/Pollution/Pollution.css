@@ -1,14 +1,60 @@
-.pollution__info {
+.pollution {
     display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
+    justify-content: space-between;
+}
+
+.pollution__plotblock {
+    width: 370px;
+    height: 590px;
+    padding-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 20px;
+    box-shadow: 0px 3px 3px grey;
+    position: relative;
 }
 
 .pollution__plot {
-    width: 360px;
+    position: absolute;
+    bottom: 20px;
 }
 
-.pollution__name {
-    margin-bottom: 20px;
-    text-align: center;
+.plot__legend {
+    width: 100%;
+    height: max-content;
+}
+
+.pollution__title {
+    font-size: 1.5em;
+    font-weight: 500;
+    margin-bottom: 0.5em;
+}
+
+.pollution__text {
+    font-size: 1em;
+    line-height: 1.2em;
+    font-weight: 300;
+    margin-bottom: 1.5em;
+}
+
+.pollution__menu {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.menu__item {
+    width: 70px;
+    height: 70px;
+    border: none;
+    border-radius: 70px;
+    box-shadow: 0px 3px 3px grey;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu__item:hover {
+    background-color: white;
 }
